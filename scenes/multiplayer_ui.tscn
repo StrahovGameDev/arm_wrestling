@@ -1,6 +1,11 @@
-[gd_scene load_steps=2 format=3 uid="uid://bw6n5o1jgewyr"]
+[gd_scene load_steps=3 format=3 uid="uid://bw6n5o1jgewyr"]
 
 [ext_resource type="Script" uid="uid://2nbcixm6wltp" path="res://scripts/multiplayer_ui.gd" id="1_furdc"]
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_furdc"]
+properties/0/path = NodePath("Score:text")
+properties/0/spawn = false
+properties/0/replication_mode = 2
 
 [node name="MultiplayerUI" type="Control"]
 layout_mode = 3
@@ -41,6 +46,16 @@ vertical_alignment = 1
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 placeholder_text = "192.168.1.1"
+
+[node name="Score" type="Label" parent="."]
+layout_mode = 0
+offset_left = 398.0
+offset_top = 93.0
+offset_right = 764.0
+offset_bottom = 240.0
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_furdc")
 
 [connection signal="pressed" from="VBoxContainer/Server" to="." method="_on_server_pressed"]
 [connection signal="pressed" from="VBoxContainer/Client" to="." method="_on_client_pressed"]
